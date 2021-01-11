@@ -15,6 +15,7 @@ module load cmake
 ```
 git clone https://github.com/RadeonOpenCompute/rocm-cmake.git
 cd rocm-cmake
+git checkout rocm-4.0.0
 mkdir build
 cd build
 cmake -DCMAKE_INSTALL_PREFIX=/opt/rocm ..
@@ -41,6 +42,7 @@ sudo cp -r ../include /opt/rocm/
 ```
 git clone -b amd-stg-open https://github.com/RadeonOpenCompute/llvm-project.git
 cd llvm-project
+git checkout rocm-4.0.0
 mkdir build-llvm
 cd build-llvm
 
@@ -75,7 +77,6 @@ make -j 8
 sudo make install
 ```
 
-
 * Install rocminfo (only for AMD HW)
 
 ```
@@ -88,13 +89,12 @@ make
 sudo make install
 
 ```
-
-
 * Install ROCm-Device-Libs
 
 ```
 git clone -b amd-stg-open http://github.com/RadeonOpenCompute/ROCm-Device-Libs.git
 cd ROCm-Device-Libs
+git checkout rocm-4.0.0
 export PATH=/opt/rocm/llvm/bin:$PATH
 mkdir build
 cd build
@@ -108,6 +108,7 @@ sudo make install
 ```
 git clone -b rocm-3.10.x https://github.com/RadeonOpenCompute/ROCR-Runtime.git
 cd ROCR-Runtime/src
+git checkout rocm-4.0.0
 mkdir build
 cd build
 cmake -DCMAKE_INSTALL_PREFIX=/opt/rocm -DHSAKMT_INC_PATH=/opt/rocm/include -DHSAKMT_LIB_PATH=/opt/rocm/lib64 ..
@@ -117,12 +118,12 @@ cp ../../../ROCT-Thunk-Interface/build/hsakmt-config.cmake /opt/rocm/share/rocm/
 cp ../../../ROCT-Thunk-Interface/build/CMakeFiles/Export/lib64/cmake/hsakmt/hsakmtTargets* /opt/rocm/share/rocm/cmake/
 ```
 
-
 * Install ROCm-CompilerSupport
 
 ```
 git clone -b amd-stg-open https://github.com/RadeonOpenCompute/ROCm-CompilerSupport
 cd ROCm-CompilerSupport/lib/comgr
+git checkout rocm-4.0.0
 export PATH=/opt/rocm/llvm/bin:$PATH
 mkdir build
 cd build
@@ -131,7 +132,6 @@ make
 sudo make install
 
 ```
-
 
 * Install ROCclr - Radeon Open Compute Common Language Runtime
 
