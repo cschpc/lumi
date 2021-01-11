@@ -120,7 +120,7 @@ cd $cur
 
 git clone -b rocm-3.10.x https://github.com/RadeonOpenCompute/ROCR-Runtime.git
 cd ROCR-Runtime/src
-git checkout $version1
+git checkout rocm-4.0.0
 mkdir build
 cd build
 cp $cur/ROCT-Thunk-Interface/build/hsakmt-config.cmake ${install_prefix}/share/rocm/cmake/
