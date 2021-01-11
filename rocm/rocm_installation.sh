@@ -6,6 +6,7 @@ module load cuda
 module load cmake
 
 # Edit the variabled bellow if necessary
+
 export cur=$PWD
 export install_prefix=/opt/rocm/
 export sud="" # Declare the value empty (default) if no sudo required, otherwise declare sudo, it is empty for safety purposes
@@ -38,7 +39,6 @@ make -j $nprocs
 $sud make install
 $sud cp -r ../include ${install_prefix}
 cd $cur
-
 
 # Install ROCM LLVM/CLang
 
@@ -131,7 +131,6 @@ make -j $nprocs
 $sud make install
 cd $cur
 
-
 # Install ROCm-CompilerSupport
 
 git clone -b amd-stg-open https://github.com/RadeonOpenCompute/ROCm-CompilerSupport
@@ -160,8 +159,6 @@ cmake -DOPENCL_DIR="$OPENCL_DIR" -DCMAKE_INSTALL_PREFIX=${install_prefix}/rocclr
 make -j $nprocs
 $sud make install
 cd $cur
-
-
 
 # Instal HIP
 
