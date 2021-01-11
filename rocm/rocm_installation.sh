@@ -10,15 +10,14 @@ module load cmake
 export cur=$PWD
 export install_prefix=/opt/rocm/
 export sud="" # Declare the value empty (default) if no sudo required, otherwise declare sudo, it is empty for safety purposes
-export version1="roc-4.0.x"
-export version2="rocm-4.0.x"
+export ver="rocm-4.0.0"
 export targ=nvidia # Declare nvidia or amd
 export nprocs=8 # Processes to be used from make
 export gccpath=/appl/spack/install-tree/gcc-4.8.5/gcc-9.1.0-vpjht2/ # PATH of your GNU installation
 
 # Install rocm-cmake
 
-git clone https://github.com/RadeonOpenCompute/rocm-cmake.git
+git clone -b $ver  https://github.com/RadeonOpenCompute/rocm-cmake.git
 cd rocm-cmake
 git checkout rocm-4.0.0
 mkdir build
@@ -30,7 +29,7 @@ cd $cur
 
 # Install ROCT Thunk Interface
 
-git clone -b $version1 https://github.com/RadeonOpenCompute/ROCT-Thunk-Interface.git
+git clone -b $ver https://github.com/RadeonOpenCompute/ROCT-Thunk-Interface.git
 cd ROCT-Thunk-Interface
 mkdir build
 cd build
@@ -42,9 +41,8 @@ cd $cur
 
 # Install ROCM LLVM/CLang
 
-git clone -b amd-stg-open https://github.com/RadeonOpenCompute/llvm-project.git
+git clone -b $ver https://github.com/RadeonOpenCompute/llvm-project.git
 cd llvm-project
-git checkout rocm-4.0.0
 mkdir build-llvm
 cd build-llvm
 
@@ -93,7 +91,7 @@ cd $cur
 # Install rocminfo
 
 if [ $targ = "amd" ]; then
-git clone https://github.com/RadeonOpenCompute/rocminfo.git
+git clone -b $ver https://github.com/RadeonOpenCompute/rocminfo.git
 cd rocminfo
 mkdir build
 cd build
@@ -105,9 +103,8 @@ fi
 
 # Install ROCm-Device-Libs
 
-git clone -b amd-stg-open http://github.com/RadeonOpenCompute/ROCm-Device-Libs.git
+git clone  -b $ver  http://github.com/RadeonOpenCompute/ROCm-Device-Libs.git
 cd ROCm-Device-Libs
-git checkout rocm-4.0.0
 export PATH=${install_prefix}/llvm/bin:$PATH
 mkdir build
 cd build
@@ -118,9 +115,8 @@ cd $cur
 
 # Install HSA Runtime API and runtime for ROCm
 
-git clone -b rocm-3.10.x https://github.com/RadeonOpenCompute/ROCR-Runtime.git
+git clone  -b $ver  https://github.com/RadeonOpenCompute/ROCR-Runtime.git
 cd ROCR-Runtime/src
-git checkout rocm-4.0.0
 mkdir build
 cd build
 cp $cur/ROCT-Thunk-Interface/build/hsakmt-config.cmake ${install_prefix}/share/rocm/cmake/
@@ -133,9 +129,8 @@ cd $cur
 
 # Install ROCm-CompilerSupport
 
-git clone -b amd-stg-open https://github.com/RadeonOpenCompute/ROCm-CompilerSupport
+git clone  -b $ver  https://github.com/RadeonOpenCompute/ROCm-CompilerSupport
 cd ROCm-CompilerSupport/lib/comgr
-git checkout rocm-4.0.0
 export PATH=${install_prefix}/llvm/bin:$PATH
 mkdir build
 cd build
@@ -146,14 +141,15 @@ cd $cur
 
 # Install ROCclr - Radeon Open Compute Common Language Runtime
 
-git clone -b $version2 https://github.com/ROCm-Developer-Tools/ROCclr.git
-git clone -b $version2 https://github.com/RadeonOpenCompute/ROCm-OpenCL-Runtime.git
+git clone -b $ver https://github.com/ROCm-Developer-Tools/ROCclr.git
+git clone -b $ver https://github.com/RadeonOpenCompute/ROCm-OpenCL-Runtime.git
 
 export ROCclr_DIR="$(readlink -f ROCclr)"
 export OPENCL_DIR="$(readlink -f ROCm-OpenCL-Runtime)"
 
 cd "$ROCclr_DIR"
-mkdir -p build; cd build
+mkdir -p build
+cd build
 export CMAKE_PREFIX_PATH=${install_prefix}/lib/cmake/:$CMAKE_PREFIX_PATH
 cmake -DOPENCL_DIR="$OPENCL_DIR" -DCMAKE_INSTALL_PREFIX=${install_prefix}/rocclr ..
 make -j $nprocs
@@ -162,7 +158,7 @@ cd $cur
 
 # Instal HIP
 
-git clone -b $version2 https://github.com/ROCm-Developer-Tools/HIP.git
+git clone -b $ver https://github.com/ROCm-Developer-Tools/HIP.git
 cd HIP
 mkdir build
 cd build
