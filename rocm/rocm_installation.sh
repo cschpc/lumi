@@ -13,6 +13,7 @@ export version1="roc-4.0.x"
 export version2="rocm-4.0.x"
 export targ=nvidia # Declare nvidia or amd
 export nprocs=8 # Processes to be used from make
+export gccpath=/appl/spack/install-tree/gcc-4.8.5/gcc-9.1.0-vpjht2/ # PATH of your GNU installation
 
 # Install rocm-cmake
 
@@ -53,18 +54,7 @@ cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${install_prefix}/llvm \
 -DCLANG_OPENMP_NVPTX_DEFAULT_ARCH=sm_70 -DLIBOMPTARGET_NVPTX_COMPUTE_CAPABILITIES=70  \
 -DCMAKE_C_COMPILER=`which gcc` -DCMAKE_CXX_COMPILER=`which g++` \
 -DLLVM_ENABLE_PROJECTS="compiler-rt;lld;clang;clang-tools-extra;libcxx;libcxxabi;lld;openmp"  \
--DGCC_INSTALL_PREFIX=/appl/spack/install-tree/gcc-4.8.5/gcc-9.1.0-vpjht2/ ../llvm
-
-
-cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${install_prefix}/llvm  \
--DLLVM_ENABLE_PROJECTS="compiler-rt;lld;clang;clang-tools-extra;libcxx;libcxxabi;lld" \
--DCMAKE_C_COMPILER=`which gcc` -DCMAKE_CXX_COMPILER=`which g++` ../llvm
-
-
-cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${install_prefix}/llvm \
--DCLANG_OPENMP_NVPTX_DEFAULT_ARCH=sm_70 -DLIBOMPTARGET_NVPTX_COMPUTE_CAPABILITIES=70\
--DLLVM_ENABLE_PROJECTS="compiler-rt;lld;clang;clang-tools-extra;libcxx;libcxxabi;lld"\
--DCMAKE_C_COMPILER=`which gcc` -DCMAKE_CXX_COMPILER=`which g++` ../llvm
+-DGCC_INSTALL_PREFIX=$gccpath ../llvm
 
 
 make -j $nprocs
