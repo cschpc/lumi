@@ -13,15 +13,13 @@ module load cmake
 * Install rocm-cmake
 
 ```
-git clone https://github.com/RadeonOpenCompute/rocm-cmake.git
+git clone -b rocm-4.0.0 https://github.com/RadeonOpenCompute/rocm-cmake.git
 cd rocm-cmake
-git checkout rocm-4.0.0
 mkdir build
 cd build
 cmake -DCMAKE_INSTALL_PREFIX=/opt/rocm ..
 make
 sudo make install
-
 ```
 
 * Install ROCT Thunk Interface
@@ -89,12 +87,12 @@ make
 sudo make install
 
 ```
+
 * Install ROCm-Device-Libs
 
 ```
-git clone -b amd-stg-open http://github.com/RadeonOpenCompute/ROCm-Device-Libs.git
+git clone -b rocm-4.0.0 http://github.com/RadeonOpenCompute/ROCm-Device-Libs.git
 cd ROCm-Device-Libs
-git checkout rocm-4.0.0
 export PATH=/opt/rocm/llvm/bin:$PATH
 mkdir build
 cd build
@@ -106,9 +104,8 @@ sudo make install
 * Install HSA Runtime API and runtime for ROCm
 
 ```
-git clone -b rocm-3.10.x https://github.com/RadeonOpenCompute/ROCR-Runtime.git
+git clone -b rocm-4.0.0 https://github.com/RadeonOpenCompute/ROCR-Runtime.git
 cd ROCR-Runtime/src
-git checkout rocm-4.0.0
 mkdir build
 cd build
 cmake -DCMAKE_INSTALL_PREFIX=/opt/rocm -DHSAKMT_INC_PATH=/opt/rocm/include -DHSAKMT_LIB_PATH=/opt/rocm/lib64 ..
@@ -121,9 +118,8 @@ cp ../../../ROCT-Thunk-Interface/build/CMakeFiles/Export/lib64/cmake/hsakmt/hsak
 * Install ROCm-CompilerSupport
 
 ```
-git clone -b amd-stg-open https://github.com/RadeonOpenCompute/ROCm-CompilerSupport
+git clone -b rocm-4.0.0 https://github.com/RadeonOpenCompute/ROCm-CompilerSupport
 cd ROCm-CompilerSupport/lib/comgr
-git checkout rocm-4.0.0
 export PATH=/opt/rocm/llvm/bin:$PATH
 mkdir build
 cd build
