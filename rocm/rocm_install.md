@@ -174,5 +174,19 @@ sudo make install
 ```
 export HIP_PLATFORM=nvcc
 export CUDA_PATH=$CUDA_INSTALL_ROOT
-export HIP_PATH=/opt/rocm/
+export HIP_PATH=/opt/rocm/hip
+export ROCM_PATH=/opt/rocm/
 ```
+
+* Install hipify-clang
+
+```
+git clone -b rocm-4.0.0 https://github.com/ROCm-Developer-Tools/HIPIFY.git
+cd HIPIFY
+mkdir build
+cd build
+cmake -DCMAKE_INSTALL_PREFIX=/opt/rocm/hip/bin ..
+make 
+sudo make install
+```
+
