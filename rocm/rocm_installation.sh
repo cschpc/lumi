@@ -164,7 +164,7 @@ mkdir build
 cd build
 
 if [ $targ = "nvidia" ]; then
-cmake -DCMAKE_BUILD_TYPE=Release -DHIP_COMPILER=clang -DHIP_PLATFORM=nvcc -DCMAKE_PREFIX_PATH=${install_prefix} -DCMAKE_INSTALL_PREFIX=${install_prefix} ..
+cmake -DCMAKE_BUILD_TYPE=Release -DHIP_COMPILER=clang -DHIP_PLATFORM=nvcc -DCMAKE_PREFIX_PATH=${install_prefix} -DCMAKE_INSTALL_PREFIX=${install_prefix}/hip ..
 
 else
 
@@ -176,4 +176,16 @@ fi
 make -j $nprocs
 $sud make install
 
+export HIP_PLATFORM=nvcc
+export CUDA_PATH=$CUDA_INSTALL_ROOT
+export HIP_PATH=${install_prefix}/hip
+export ROCM_PATH=${install_prefix}/
+
+git clone -b $ver https://github.com/ROCm-Developer-Tools/HIPIFY.git
+cd HIPIFY
+mkdir build
+cd build
+cmake -DCMAKE_INSTALL_PREFIX=${install_prefix}/hip/bin ..
+make -j $nprocs 
+$sud make install
 
