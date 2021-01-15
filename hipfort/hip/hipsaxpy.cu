@@ -1,7 +1,7 @@
 #include <hip/hip_runtime.h>
 #include <cstdio>
 
-__global__ void saxpy(double *y, double *x, float a, int n)
+__global__ void saxpy(float *y, float *x, float a, int n)
 {
     size_t i = blockDim.x * blockIdx.x  + threadIdx.x;
     if (i < n) y[i] = y[i] + a*x[i];
@@ -10,7 +10,7 @@ __global__ void saxpy(double *y, double *x, float a, int n)
 
 extern "C"
 {
-  void launch(double **dout, double **da, float db, int N)
+  void launch(float **dout, float **da, float db, int N)
   {
 
      dim3 tBlock(256,1,1);
