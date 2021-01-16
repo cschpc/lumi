@@ -1,5 +1,5 @@
 
-export HIPFORT_HOME=/scratch/project_2002078/markoman/amd/rocm_installation/install//hipfort
+export HIPFORT_HOME=${ROCM_PATH}/hipfort/
 include ${HIPFORT_HOME}/bin/Makefile.hipfort
 
 OUTPUT_DIR ?= $(PWD)
