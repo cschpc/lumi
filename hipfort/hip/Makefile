@@ -15,7 +15,7 @@ $(APP): $(OUTPUT_DIR)/main.o $(OUTPUT_DIR)/hipsaxpy.o
 $(OUTPUT_DIR)/main.o: main.f03
 	$(FC)  -c $^ -o $(OUTPUT_DIR)/main.o
 
-$(OUTPUT_DIR)/hipsaxpy.o: hipsaxpy.cu
+$(OUTPUT_DIR)/hipsaxpy.o: hipsaxpy.cpp
 	$(CXX) -c $^ -o $(OUTPUT_DIR)/hipsaxpy.o
 
 run: $(APP)
