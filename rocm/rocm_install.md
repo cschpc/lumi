@@ -133,7 +133,7 @@ sudo make install
 
 ```
 git clone -b rocm-4.0.x https://github.com/ROCm-Developer-Tools/ROCclr.git
-git clone -b roc-4.0.x https://github.com/RadeonOpenCompute/ROCm-OpenCL-Runtime.git
+git clone -b rocm-4.0.x https://github.com/RadeonOpenCompute/ROCm-OpenCL-Runtime.git
 export CMAKE_PREFIX_PATH=${install_prefix}/lib/cmake/:$CMAKE_PREFIX_PATH
 
 export ROCclr_DIR="$(readlink -f ROCclr)"
