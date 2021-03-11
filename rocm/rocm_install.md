@@ -46,8 +46,8 @@ cd build-llvm
 
 * For NVIDIA: 
 cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/opt/rocm//llvm \
--DCLANG_OPENMP_NVPTX_DEFAULT_ARCH=sm_70 -DLIBOMPTARGET_NVPTX_COMPUTE_CAPABILITIES=70\
--DLLVM_ENABLE_PROJECTS="compiler-rt;lld;clang;clang-tools-extra;libcxx;libcxxabi;lld;openmp"\
+-DCLANG_OPENMP_NVPTX_DEFAULT_ARCH=sm_70 -DLIBOMPTARGET_NVPTX_COMPUTE_CAPABILITIES=70 \
+-DLLVM_ENABLE_PROJECTS="compiler-rt;lld;clang;clang-tools-extra;libcxx;libcxxabi;lld;openmp" \
 -DCMAKE_C_COMPILER=`which gcc` -DCMAKE_CXX_COMPILER=`which g++` \
 -DGCC_INSTALL_PREFIX=/appl/spack/install-tree/gcc-4.8.5/gcc-9.1.0-vpjht2/ ../llvm
 
