@@ -65,6 +65,7 @@ cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/opt/rocm/llvm  \
 
 make -j 8
 sudo make install
+unset CXXFLAGS
 
 * For AMD HW (not tested): 
 cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/opt/rocm/llvm\ 
