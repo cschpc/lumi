@@ -109,11 +109,11 @@ git clone -b rocm-4.0.0 https://github.com/RadeonOpenCompute/ROCR-Runtime.git
 cd ROCR-Runtime/src
 mkdir build
 cd build
+cp ../../../ROCT-Thunk-Interface/build/hsakmt-config.cmake /opt/rocm/share/rocm/cmake/
+cp ../../../ROCT-Thunk-Interface/build/CMakeFiles/Export/lib64/cmake/hsakmt/hsakmtTargets* /opt/rocm/share/rocm/cmake/
 cmake -DCMAKE_INSTALL_PREFIX=/opt/rocm -DHSAKMT_INC_PATH=/opt/rocm/include -DHSAKMT_LIB_PATH=/opt/rocm/lib64 ..
 make
 sudo make install
-cp ../../../ROCT-Thunk-Interface/build/hsakmt-config.cmake /opt/rocm/share/rocm/cmake/
-cp ../../../ROCT-Thunk-Interface/build/CMakeFiles/Export/lib64/cmake/hsakmt/hsakmtTargets* /opt/rocm/share/rocm/cmake/
 ```
 
 * Install ROCm-CompilerSupport
